@@ -112,7 +112,7 @@ public class LonelyTwitterActivity extends Activity {
 			throw new RuntimeException();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			throw new RuntimeException();
+			throw new RuntimeException(); /*some changes here*/
 		}
 	}
 }
