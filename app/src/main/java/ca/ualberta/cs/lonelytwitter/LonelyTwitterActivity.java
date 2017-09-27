@@ -1,3 +1,16 @@
+/**
+ *
+ * LonelyTwitterActivity
+ *
+ * Version 1.0
+ *
+ * September 26, 2017
+ *
+ * Copyright 2017 Team Me. CMPUT 301 University of Alberta. - All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behaviour at University of Alberta.
+ * You may find a copy of the license in this project. Otherwise please contact alido@ualberta.ca
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -24,6 +37,14 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+/**
+ * Represents LonelyTwitter's activity.
+ *
+ * @author Luis Anton Alido
+ * @version 1.0
+ *
+ */
 
 public class LonelyTwitterActivity extends Activity {
 
@@ -63,6 +84,10 @@ public class LonelyTwitterActivity extends Activity {
 		});
 	}
 
+    /**
+     * Activity init.
+     */
+
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -72,6 +97,10 @@ public class LonelyTwitterActivity extends Activity {
 				R.layout.list_item, tweetList);
 		oldTweetsList.setAdapter(adapter);
 	}
+
+    /**
+     * Loads activity from file.
+     */
 
 	private void loadFromFile() {
 		try {
@@ -94,7 +123,11 @@ public class LonelyTwitterActivity extends Activity {
 		}
 
 	}
-	
+
+    /**
+     * Saves activity into file.
+     */
+
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
@@ -112,7 +145,7 @@ public class LonelyTwitterActivity extends Activity {
 			throw new RuntimeException();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			throw new RuntimeException(); /*some changes here*/
+			throw new RuntimeException();
 		}
 	}
 }
