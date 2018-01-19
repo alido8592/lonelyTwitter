@@ -23,6 +23,7 @@ public class LonelyTwitterActivity extends Activity {
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
+	private Mood mood;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -33,6 +34,8 @@ public class LonelyTwitterActivity extends Activity {
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
+		Button happyButton = (Button) findViewById(R.id.happy);
+		Button sadButton = (Button) findViewById(R.id.sad);
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
@@ -42,6 +45,28 @@ public class LonelyTwitterActivity extends Activity {
 				saveInFile(text, new Date(System.currentTimeMillis()));
 				finish();
 
+			}
+		});
+		happyButton.setOnClickListener(new View.OnClickListener() { /** saves with happy mood */
+
+			public void onClick(View v) {
+				Happy mood = new Happy();
+				String moodName = mood.getMoodName();
+				setResult(RESULT_OK);
+				String text = bodyText.getText().toString() + " Current Mood is: " + moodName;
+				saveInFile(text, mood.getDate());
+				finish();
+			}
+		});
+		sadButton.setOnClickListener(new View.OnClickListener() { /** saves with sad mood */
+
+			public void onClick(View v) {
+				Sad mood = new Sad();
+				String moodName = mood.getMoodName();
+				setResult(RESULT_OK);
+				String text = bodyText.getText().toString() + " Current Mood is: " + moodName;
+				saveInFile(text, mood.getDate());
+				finish();
 			}
 		});
 	}
@@ -93,3 +118,4 @@ public class LonelyTwitterActivity extends Activity {
 		}
 	}
 }
+
