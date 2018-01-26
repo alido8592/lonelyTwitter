@@ -30,5 +30,13 @@ public abstract class Mood { /** Date grab based off of https://www.mkyong.com/j
 		String dateString = format.format(this.date);
 		this.todayDate = dateString;
 	}
+
+	public String getMoodName(){
+		return this.moodName;
+	}
+
+	public void setMoodName(String moodName) {
+		this.moodName = moodName;
+	}
 }
 

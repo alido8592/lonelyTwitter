@@ -9,12 +9,23 @@ import java.util.Date;
 public abstract class Tweet implements Tweetable {
     private String message;
     private Date date;
+    private Mood mood;
 
     Tweet(String message){
 
         this.message = message;
         date = new Date();
+        if (mood!=null) {
+            String newMessage = message + " | Current mood is: " + mood.getMoodName();
+            this.message = newMessage;
+        }
 //        message = message;
+    }
+
+    Tweet(String message, Mood mood) {
+
+        this.message = message + " | Current mood is: " + mood.getMoodName();
+        date = new Date();
     }
 
     Tweet(String message, Date date){
@@ -48,5 +59,7 @@ public abstract class Tweet implements Tweetable {
     public String toString() {
         return date.toString() + " | " + message;
     }
+
+    public void setMood(Mood mood) { this.mood = mood;}
 
 }

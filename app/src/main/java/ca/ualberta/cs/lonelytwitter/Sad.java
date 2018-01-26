@@ -8,9 +8,11 @@ public class Sad extends Mood {
 
     public Sad() {
         super();
+        setMoodName(moodName);
     }
     public Sad(Date date) {
         super();
+        setMoodName(moodName);
         super.setDate(date);
     }
 
@@ -18,7 +20,4 @@ public class Sad extends Mood {
         super.setDate(date);
     }
 
-    public String getMoodName(){
-        return this.moodName;
-    }
 }

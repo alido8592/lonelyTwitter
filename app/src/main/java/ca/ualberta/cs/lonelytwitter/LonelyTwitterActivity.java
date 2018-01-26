@@ -72,10 +72,8 @@ public class LonelyTwitterActivity extends Activity {
 				Happy mood = new Happy();
 				String text = bodyText.getText().toString();
 
-				Tweet tweet = new NormalTweet(text);
+				Tweet tweet = new NormalTweet(text,mood);
 				tweetList.add(tweet);
-				Tweet moodTweet = new NormalTweet("Current Mood is: " + mood.getMoodName());
-				tweetList.add(moodTweet);
 				adapter.notifyDataSetChanged();
 				saveInFile(); //gson is done in saveInFile process
 			}
@@ -88,10 +86,8 @@ public class LonelyTwitterActivity extends Activity {
 				Sad mood = new Sad();
 				String text = bodyText.getText().toString();
 
-				Tweet tweet = new NormalTweet(text);
+				Tweet tweet = new NormalTweet(text,mood);
 				tweetList.add(tweet);
-				Tweet moodTweet = new NormalTweet("Current Mood is: " + mood.getMoodName());
-				tweetList.add(moodTweet);
 				adapter.notifyDataSetChanged();
 				saveInFile(); //gson is done in saveInFile process
 			}

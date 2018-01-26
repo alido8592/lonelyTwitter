@@ -14,6 +14,10 @@ public class NormalTweet extends Tweet {
         super(message, date);
     }
 
+    NormalTweet(String message, Mood mood){
+        super(message,mood);
+    }
+
     @Override
     public Boolean isImportant() {
         return Boolean.FALSE;
