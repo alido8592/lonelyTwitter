@@ -70,10 +70,12 @@ public class LonelyTwitterActivity extends Activity {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				Happy mood = new Happy();
-				String text = bodyText.getText().toString() + " | Current Mood is: " + mood.getMoodName(); //gson is done on save
+				String text = bodyText.getText().toString();
 
 				Tweet tweet = new NormalTweet(text);
 				tweetList.add(tweet);
+				Tweet moodTweet = new NormalTweet("Current Mood is: " + mood.getMoodName());
+				tweetList.add(moodTweet);
 				adapter.notifyDataSetChanged();
 				saveInFile(); //gson is done in saveInFile process
 			}
@@ -84,10 +86,12 @@ public class LonelyTwitterActivity extends Activity {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				Sad mood = new Sad();
-				String text = bodyText.getText().toString() + " | Current Mood is: " + mood.getMoodName(); //gson is done on save
+				String text = bodyText.getText().toString();
 
 				Tweet tweet = new NormalTweet(text);
 				tweetList.add(tweet);
+				Tweet moodTweet = new NormalTweet("Current Mood is: " + mood.getMoodName());
+				tweetList.add(moodTweet);
 				adapter.notifyDataSetChanged();
 				saveInFile(); //gson is done in saveInFile process
 			}
