@@ -23,6 +23,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "tweets.sav";
@@ -41,6 +44,9 @@ public class LonelyTwitterActivity extends Activity {
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
+		Button happyButton = (Button) findViewById(R.id.happy);
+		Button sadButton = (Button) findViewById(R.id.sad);
+		Button clearButton = (Button) findViewById(R.id.clear);
 
 
 
@@ -58,6 +64,43 @@ public class LonelyTwitterActivity extends Activity {
 
 			}
 		});
+
+		happyButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				setResult(RESULT_OK);
+				Happy mood = new Happy();
+				String text = bodyText.getText().toString() + " | Current Mood is: " + mood.getMoodName(); //gson is done on save
+
+				Tweet tweet = new NormalTweet(text);
+				tweetList.add(tweet);
+				adapter.notifyDataSetChanged();
+				saveInFile(); //gson is done in saveInFile process
+			}
+		});
+
+		sadButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				setResult(RESULT_OK);
+				Sad mood = new Sad();
+				String text = bodyText.getText().toString() + " | Current Mood is: " + mood.getMoodName(); //gson is done on save
+
+				Tweet tweet = new NormalTweet(text);
+				tweetList.add(tweet);
+				adapter.notifyDataSetChanged();
+				saveInFile(); //gson is done in saveInFile process
+			}
+		});
+
+		clearButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View view) {
+				tweetList.clear();
+				adapter.notifyDataSetChanged();
+				saveInFile();
+			}
+		});
 	}
 
 	@Override
@@ -67,7 +110,7 @@ public class LonelyTwitterActivity extends Activity {
 		super.onStart();
 		Log.i("LifeCycle --->", "onStart is called");
 		loadFromFile();
-		 adapter = new ArrayAdapter<Tweet>(this,
+		adapter = new ArrayAdapter<Tweet>(this,
 				R.layout.list_item, tweetList);
 		oldTweetsList.setAdapter(adapter);
 
@@ -112,7 +155,7 @@ public class LonelyTwitterActivity extends Activity {
         String messageOnScreen = "";
         for (Tweetable t:
              tweetableList) {
-            messageOnScreen += t.getMessage() + "\n";
+            messageOnScreen = t.getMessage() + "\n";
         }
         Toast.makeText(this, messageOnScreen, Toast.LENGTH_SHORT).show();
 
