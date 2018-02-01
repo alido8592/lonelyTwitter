@@ -1,3 +1,13 @@
+/*
+ * LonelyTwitterActivity
+ *
+ * Version 1.0
+ *
+ * Copyright 2018 Team X. CMPUT 301. University of Alberta. All Rights Reserved.
+ * You may use, distribute, or modify the code under terms and conditions of the Code of Student Behaviour at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise, please contact alido@ualberta.ca
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -26,6 +36,12 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Represents the LonelyTwitterActivity activity
+ * @author alido
+ * @version 1.0
+ */
+
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "tweets.sav";
@@ -35,6 +51,11 @@ public class LonelyTwitterActivity extends Activity {
 	private ArrayAdapter<Tweet> adapter;
 	
 	/** Called when the activity is first created. */
+	/**
+	 * Procedure run upon activity creation
+	 * @param savedInstanceState Bundle of info sent to activity
+	 */
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -103,6 +124,9 @@ public class LonelyTwitterActivity extends Activity {
 		});
 	}
 
+	/**
+	 * Procedure run upon activity start
+	 */
 	@Override
 	protected void onStart() {
 
@@ -161,6 +185,11 @@ public class LonelyTwitterActivity extends Activity {
 
 	}
 
+	/**
+	 * Loads activity saved on a file
+	 * @return String of tweets saved
+	 */
+
 	private String[] loadFromFile() {
 		ArrayList<String> tweets = new ArrayList<String>();
 		try {
@@ -185,7 +214,11 @@ public class LonelyTwitterActivity extends Activity {
 		}
 		return tweets.toArray(new String[tweets.size()]);
 	}
-	
+
+	/**
+	 * Saves tweets into a file
+	 */
+
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
@@ -205,6 +238,10 @@ public class LonelyTwitterActivity extends Activity {
 			throw new RuntimeException();
 		}
 	}
+
+	/**
+	 * Procedure run upon activity end
+	 */
 
 	@Override
 	protected void onDestroy() {
